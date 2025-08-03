@@ -18,7 +18,7 @@ async function findById(id) {
     const result = await db("agentes").select("*").where({ id }).first();
     return result;
   } catch (error) {
-    throw new AppError(500, "Erro ao buscar agentes", [error.message]);
+    throw new AppError(500, "Erro ao buscar agente", [error.message]);
   }
 }
 
@@ -27,7 +27,7 @@ async function create(agente) {
     const [newAgente] = await db("agentes").insert(agente).returning("*");
     return newAgente;
   } catch (error) {
-    throw new AppError(500, "Erro ao buscar agentes", [error.message]);
+    throw new AppError(500, "Erro ao criar agente", [error.message]);
   }
 }
 
@@ -39,7 +39,7 @@ async function update(id, updatedAgente) {
       .returning("*");
     return agente;
   } catch (error) {
-    throw new AppError(500, "Erro ao buscar agentes", [error.message]);
+    throw new AppError(500, "Erro ao atualizar agente", [error.message]);
   }
 }
 
@@ -51,7 +51,7 @@ async function updatePartial(id, partialAgente) {
       .returning("*");
     return agente;
   } catch (error) {
-    throw new AppError(500, "Erro ao buscar agentes", [error.message]);
+    throw new AppError(500, "Erro ao atualizar agente", [error.message]);
   }
 }
 
@@ -60,7 +60,7 @@ async function remove(id) {
     const rows = await db("agentes").del().where({ id });
     return !!rows;
   } catch (error) {
-    throw new AppError(500, "Erro ao buscar agentes", [error.message]);
+    throw new AppError(500, "Erro ao excluir agente", [error.message]);
   }
 }
 
