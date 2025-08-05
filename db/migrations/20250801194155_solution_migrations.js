@@ -10,7 +10,7 @@ exports.up = async function (knex) {
     table.string("cargo").notNullable();
   });
 
-  await knex.createTable("casos", function (table) {
+  await knex.schema.createTable("casos", function (table) {
     table.increments("id").primary();
     table.string("titulo").notNullable();
     table.text("descricao").notNullable();
@@ -30,5 +30,5 @@ exports.up = async function (knex) {
  */
 exports.down = async function (knex) {
   await knex.schema.dropTableIfExists("casos");
-  await knex.dropTableIfExists("agentes");
+  await knex.schema.dropTableIfExists("agentes");
 };
