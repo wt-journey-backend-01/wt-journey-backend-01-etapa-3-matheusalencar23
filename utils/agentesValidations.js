@@ -36,30 +36,26 @@ const updateAgenteValidation = (req, res, next) => {
         .int({ error: "Id inválido" })
         .positive({ error: "Id inválido" }),
     }),
-    body: z
-      .looseObject({
-        nome: z
-          .string({ error: "O nome é obrigatório" })
-          .min(1, "O nome é obrigatório"),
-        cargo: z
-          .string({ error: "O cargo é obrigatório" })
-          .min(1, "O cargo é obrigatório"),
-        dataDeIncorporacao: z.iso
-          .date({
-            error: (issue) =>
-              issue.input === undefined
-                ? "A data de incorporação é obrigatória"
-                : "A data de incorporação deve estar no formato YYYY-MM-DD",
-          })
-          .refine((value) => {
-            const now = new Date();
-            const inputDate = new Date(value);
-            return inputDate <= now;
-          }, "A data não pode estar no futuro"),
-      })
-      .refine((data) => data.id === undefined, {
-        error: "O id não pode ser atualizado",
-      }),
+    body: z.looseObject({
+      nome: z
+        .string({ error: "O nome é obrigatório" })
+        .min(1, "O nome é obrigatório"),
+      cargo: z
+        .string({ error: "O cargo é obrigatório" })
+        .min(1, "O cargo é obrigatório"),
+      dataDeIncorporacao: z.iso
+        .date({
+          error: (issue) =>
+            issue.input === undefined
+              ? "A data de incorporação é obrigatória"
+              : "A data de incorporação deve estar no formato YYYY-MM-DD",
+        })
+        .refine((value) => {
+          const now = new Date();
+          const inputDate = new Date(value);
+          return inputDate <= now;
+        }, "A data não pode estar no futuro"),
+    }),
   });
   validate(updateAgente, req);
   next();
