@@ -47,7 +47,12 @@ async function update(id, updatedAgente) {
       .update(updatedAgente)
       .where({ id })
       .returning("*");
-    return agente;
+    return {
+      ...agente,
+      dataDeIncorporacao: new Date(agente.dataDeIncorporacao)
+        .toISOString()
+        .split("T")[0],
+    };
   } catch (error) {
     throw new AppError(500, "Erro ao atualizar agente", [error.message]);
   }
@@ -59,7 +64,12 @@ async function updatePartial(id, partialAgente) {
       .update(partialAgente)
       .where({ id })
       .returning("*");
-    return agente;
+    return {
+      ...agente,
+      dataDeIncorporacao: new Date(agente.dataDeIncorporacao)
+        .toISOString()
+        .split("T")[0],
+    };
   } catch (error) {
     throw new AppError(500, "Erro ao atualizar agente", [error.message]);
   }
