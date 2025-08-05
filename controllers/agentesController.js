@@ -1,4 +1,5 @@
 const agentesRepository = require("../repositories/agentesRepository");
+const casosRepository = require("../repositories/casosRepository");
 const { AppError } = require("../utils/errorHandler");
 
 async function getAllAgentes(req, res) {
@@ -74,6 +75,16 @@ async function deleteAgente(req, res) {
   res.status(204).send();
 }
 
+async function getCasosByAgenteId(req, res) {
+  const agenteId = req.params.id;
+  const agente = await agentesRepository.findById(agenteId);
+  if (!agente) {
+    throw new AppError(404, "Nenhum agente encontrado para o id especificado");
+  }
+  const casos = await casosRepository.findAll({ agente_id: agenteId });
+  res.json(casos);
+}
+
 module.exports = {
   getAllAgentes,
   getAgenteById,
@@ -81,4 +92,5 @@ module.exports = {
   updateAgente,
   updatePartialAgente,
   deleteAgente,
+  getCasosByAgenteId,
 };

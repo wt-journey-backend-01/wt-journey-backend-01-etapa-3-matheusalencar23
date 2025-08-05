@@ -7,6 +7,7 @@ const {
   partialUpdateAgenteValidation,
 } = require("../utils/agentesValidations");
 
+router.get("/agentes/:id/casos", agentesController.getCasosByAgenteId);
 router.get("/agentes/:id", agentesController.getAgenteById);
 router.get("/agentes", agentesController.getAllAgentes);
 router.post("/agentes", newAgenteValidation, agentesController.createAgente);
