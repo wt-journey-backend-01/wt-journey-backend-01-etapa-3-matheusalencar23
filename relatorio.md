@@ -2,9 +2,9 @@
 
 # 🧪 Relatório de Avaliação – Journey Levty Etapa 1 - matheusalencar23
 
-**Data:** 05/08/2025 18:45
+**Data:** 05/08/2025 18:48
 
-**Nota Final:** `34.13/100`
+**Nota Final:** `36.82/100`
 **Status:** ❌ Reprovado
 
 ---
@@ -33,9 +33,7 @@
 - Nenhum item bônus foi identificado. Tente adicionar mais estilo e complexidade ao seu código nas próximas tentativas!
 
 ## ❌ Problemas Detectados (Descontos de até 100 pontos)
-- Foram encontrados `2` problemas que acarretam descontos. Veja abaixo os testes penalizados:
-  - ⚠️ **Falhou no teste de penalidade**: `Validation: Consegue alterar ID do agente com método PUT`
-    - **Correção sugerida**: Nenhuma sugestão de correção disponível.
+- Foram encontrados `1` problemas que acarretam descontos. Veja abaixo os testes penalizados:
   - ⚠️ **Falhou no teste de penalidade**: `ENV: Arquivo .env está presente na root do projeto`
     - **Correção sugerida**: Nenhuma sugestão de correção disponível.
 
