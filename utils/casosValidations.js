@@ -16,11 +16,10 @@ const newCasoValidation = (req, res, next) => {
             ? "O status é obrigatório"
             : 'O status deve ser "aberto" ou "solucionado"',
       }),
-      agente_id: z
-        .string({
-          error: "O agente responsável pelo caso é obrigatório",
-        })
-        .min(1, "O agente responsável pelo caso é obrigatório"),
+      agente_id: z.coerce
+        .number({ error: "Id inválido" })
+        .int({ error: "Id inválido" })
+        .positive({ error: "Id inválido" }),
     }),
   });
   validate(newCaso, req);
@@ -49,11 +48,10 @@ const updateCasoValidation = (req, res, next) => {
               ? "O status é obrigatório"
               : 'O status deve ser "aberto" ou "solucionado"',
         }),
-        agente_id: z
-          .string({
-            error: "O agente responsável pelo caso é obrigatório",
-          })
-          .min(1, "O agente responsável pelo caso é obrigatório"),
+        agente_id: z.coerce
+          .number({ error: "Id inválido" })
+          .int({ error: "Id inválido" })
+          .positive({ error: "Id inválido" }),
       })
       .refine((data) => data.id === undefined, {
         error: "O id não pode ser atualizado",
@@ -84,9 +82,10 @@ const partialUpdateCasoValidation = (req, res, next) => {
             })
           ),
           agente_id: z.optional(
-            z
-              .string()
-              .min(1, "O agente responsável pelo caso não pode ser vazio")
+            z.coerce
+              .number({ error: "Id inválido" })
+              .int({ error: "Id inválido" })
+              .positive({ error: "Id inválido" })
           ),
         },
         {
