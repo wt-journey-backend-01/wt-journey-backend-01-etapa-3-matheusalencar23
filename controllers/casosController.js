@@ -21,8 +21,8 @@ async function getAllCasos(req, res) {
 
 async function getCasosById(req, res) {
   const id = Number(req.params.id);
-  if (!id || isNaN(id) || !isFinite(id)) {
-    throw new AppError(404, "Nenhum caso encontrado para o id especificado");
+  if (!id || !Number.isInteger(id)) {
+    throw new AppError(404, "Id inválido");
   }
   const caso = await casosRepository.findById(id);
   if (!caso) {
