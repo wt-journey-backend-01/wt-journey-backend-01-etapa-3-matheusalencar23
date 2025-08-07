@@ -20,8 +20,13 @@ async function findAll(filter = {}, orderBy = ["id", "asc"]) {
 
 async function findById(id) {
   try {
-    const result = await db("agentes").select("*").where({ id }).first();
-    return result;
+    const agente = await db("agentes").select("*").where({ id }).first();
+    return {
+      ...agente,
+      dataDeIncorporacao: new Date(agente.dataDeIncorporacao)
+        .toISOString()
+        .split("T")[0],
+    };
   } catch (error) {
     throw new AppError(500, "Erro ao buscar agente", [error.message]);
   }
