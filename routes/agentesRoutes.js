@@ -7,6 +7,46 @@ const {
   partialUpdateAgenteValidation,
 } = require("../utils/agentesValidations");
 
+/**
+ * @openapi
+ * /agentes/{id}/casos:
+ *  get:
+ *    summary: Retorna uma lista de casos referente a um agente
+ *    description: Retorna uma lista de casos com base no identificador do agente
+ *    tags: [Agentes]
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        required: true
+ *        schema:
+ *          type: integer
+ *          example: 1
+ *    responses:
+ *      200:
+ *        description: Lista de casos
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                $ref: '#/components/schemas/Caso'
+ *      404:
+ *        description: Nenhum agente encontrado para o id especificado
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                status:
+ *                  type: integer
+ *                  example: 404
+ *                message:
+ *                  type: string
+ *                  example: Nenhum agente encontrado para o id especificado
+ *                errors:
+ *                  type: string
+ *                  example: []
+ */
 router.get("/agentes/:id/casos", agentesController.getCasosByAgenteId);
 
 /**
